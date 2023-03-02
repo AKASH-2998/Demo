@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  mongodb:
+    image: "mongo"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ak
+      - MONGO_INITDB_ROOT_PASSWORD=ak
+    volumes:
+      - data:/data/db
+  backend:
+    build: ./backend
+    ports:
+      - "3000:80"
+    volumes:
+        - data:/app/logs
+        - ./backend:/app
+        - /app/node_modules
+    environment:
+      - MONGODB_USERNAME=ak
+      - MONGODB_PASSWORD=ak
+    depends_on:
+      - mongodb
+  frontend:
+    build: ./frontend
+    ports:
+      - "1010:80"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+
+
+volumes:
+  data:

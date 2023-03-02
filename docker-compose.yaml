@@ -23,7 +23,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "1010:80"
+      - "80:80"
     volumes:
       - ./frontend/src:/app/src
     stdin_open: true

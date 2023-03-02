@@ -14,7 +14,7 @@ function App() {
       setIsLoading(true);
 
       try {
-        const response = await fetch('http://localhost/goals:1010');
+        const response = await fetch('http://localhost/goals');
 
         const resData = await response.json();
 
@@ -39,7 +39,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost/goals:1010', {
+      const response = await fetch('http://localhost/goals', {
         method: 'POST',
         body: JSON.stringify({
           text: goalText,
